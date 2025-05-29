@@ -12,13 +12,22 @@ def to_images(pdf, dpi=300):
 def extract_text_from_page(page):
 	return pyt.image_to_string(page);
 
+def get_all_text(pdf, dpi=300):
+	pages = to_images(pdf, dpi);
+	text_pages = [extract_text_from_page(page) for page in pages]
+	return "\nNEW PAGE\n".join(text_pages)
+
+
+
 
 if __name__ == "__main__":
 	# test saving of pages as images
 	pdf_path = "/home/connor/personal/inbox/something.pdf"
-	pages = to_images(pdf_path)
-	text = extract_text_from_page(pages[0])
+
+	text = get_all_text(pdf_path);
 	print(text)
+
+
 	"""
 	pages = to_images(pdf_path)
 	for i in range(5):
