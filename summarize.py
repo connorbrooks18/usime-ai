@@ -1,5 +1,6 @@
 import text_extraction
 import os
+import sys
 from openai import AzureOpenAI
 
 class Summarizer:
@@ -29,6 +30,14 @@ class Summarizer:
 if __name__ == "__main__":
 	endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
 	api_key = os.environ["AZURE_OPENAI_API_KEY"]
+
+
+	if len(sys.argv) < 2 or sys.argv[1] == None or sys.argv[1] == "":
+		print("Insert pdf name or path to pdf after summarize.py")
+		exit()
+	
+	pdf_name = sys.argv[1]
+
 
 	s = Summarizer(endpoint=endpoint, api_key=api_key)
 	summary = s.summarize_from_pdf("./example.pdf")
