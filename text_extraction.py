@@ -15,7 +15,7 @@ def extract_text_from_page(page):
 def extract_all_text(pdf, dpi=300):
 	pages = to_images(pdf, dpi);
 	text_pages = [extract_text_from_page(page) for page in pages]
-	return "\nNEW PAGE\n".join(text_pages)
+	return "\nNEW PAGE\n\n".join(text_pages)
 
 
 

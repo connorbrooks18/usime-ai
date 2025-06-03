@@ -1,14 +1,15 @@
 import text_extraction
+import os
 from openai import AzureOpenAI
 
 class Summarizer:
 
-	def __init__(self):
+	def __init__(self, endpoint, api_key):
 		self.client = AzureOpenAI(
-			azure_endpoint = "https://mr-summarizer2.openai.azure.com/",
-	api_key="D49TOSJkX3eLklNhaOcP4hKakFAQc1AmQnaImobh7n4OfjbWYCc4JQQJ99BFACHYHv6XJ3w3AAABACOGgYNL",
+			azure_endpoint = endpoint,
+			api_key = api_key,
 			api_version="2025-04-01-preview"
-			)
+		)
 
 	def summarize_from_pdf(self, pdf): 
 		text = text_extraction.extract_all_text(pdf)
@@ -21,11 +22,14 @@ class Summarizer:
 				{"role": "user", "content":text}
 			],
 			#max_completion_tokens = 10000,
-			)
+		)
 		return response.output_text 
 
 
 if __name__ == "__main__":
-	s = Summarizer()
+	endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
+	api_key = os.environ["AZURE_OPENAI_API_KEY"]
+
+	s = Summarizer(endpoint=endpoint, api_key=api_key)
 	summary = s.summarize_from_pdf("./example.pdf")
 	print(summary)
