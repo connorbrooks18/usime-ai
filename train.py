@@ -22,7 +22,7 @@ class Trainer:
 		self.prompt = "say cheese!"
 
 
-	def get_prompt(self, file_name="prompt.txt"):
+	def get_prompt(self, file_name="summarize_prompt.txt"):
 		# get developer prompt from a file
 		prompt = ""
 		with open(file_name, "r") as file:
@@ -34,6 +34,7 @@ class Trainer:
 	
 	#save training examples to a file in JSON for fine-tuning
 	#using n cases stored in a folder called 'examples' in the current directory
+	#f
 	def generate_training_files(self, n):
 		training = []
 		for i in range(n):

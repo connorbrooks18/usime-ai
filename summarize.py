@@ -5,16 +5,16 @@ from openai import AzureOpenAI
 
 class Summarizer:
 
-	def __init__(self, endpoint, api_key, file="prompt.txt"):
+	def __init__(self, endpoint, api_key):
 		self.client = AzureOpenAI(
 			azure_endpoint = endpoint,
 			api_key = api_key,
 			api_version="2025-04-01-preview"
 		)
-		self.prompt = self.get_prompt(file)
+		self.prompt = self.get_prompt()
 
 
-	def get_prompt(self, file_name="prompt.txt"):
+	def get_prompt(self, file_name="summarize_prompt.txt"):
 		# get developer prompt from a file
 		prompt = ""
 		with open(file_name, "r") as file:
