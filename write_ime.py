@@ -15,7 +15,7 @@ class Writer:
 		self.user_prompt = self.make_user_prompt()
 
 
-	def get_developer_prompt(self, file_name="write_ime_prompt.txt"):
+	def get_developer_prompt(self, file_name="./prompts/write_ime_prompt.txt"):
 		# get developer prompt from a file
 		prompt = ""
 		with open(file_name, "r") as file:
@@ -23,7 +23,7 @@ class Writer:
 				prompt += line			
 		return prompt
 
-	def make_user_prompt(self, records_file="example.pdf", notes_file="example.txt", questions_file="questions.txt"):
+	def make_user_prompt(self, records_file="./example/example.pdf", notes_file="./example/example.txt", questions_file="./example/questions.txt"):
 		records = text_extraction.extract_all_text(records_file)
 		with open(notes_file) as f:
 			notes = f.read()

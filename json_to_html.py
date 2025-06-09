@@ -18,7 +18,7 @@ def json_to_html(json_file, header_tag="h1", header_class="", content_tag="p", c
 
 if __name__ == "__main__":
 
-	json_file = "ime_output.txt"
+	json_file = "./example/ime_output.txt"
 	html = json_to_html(json_file)
 	
 	print(html)

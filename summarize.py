@@ -14,7 +14,7 @@ class Summarizer:
 		self.prompt = self.get_prompt()
 
 
-	def get_prompt(self, file_name="summarize_prompt.txt"):
+	def get_prompt(self, file_name="./prompts/summarize_prompt.txt"):
 		# get developer prompt from a file
 		prompt = ""
 		with open(file_name, "r") as file:
@@ -56,5 +56,5 @@ if __name__ == "__main__":
 
 
 	s = Summarizer(endpoint=endpoint, api_key=api_key)
-	summary = s.summarize_from_pdf("./example.pdf")
+	summary = s.summarize_from_pdf("./example/example.pdf")
 	print(summary)

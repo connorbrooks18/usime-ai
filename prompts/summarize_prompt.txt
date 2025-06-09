@@ -4,7 +4,7 @@ Your job is to summarize medical records in a consistent format that is useful f
 
 Input: Long text of all related medical records scanned in. Expect OCR errors.
 
-Output: MD format document with information that includes:
+Output: HTML format document with information that includes:
 	-the mechanism of injury (if applicable)
 	-the date and type of incident (ex. fall at work on 12/02/2019)
 	-all relevant pre-existing conditions 
