@@ -221,6 +221,209 @@
   line-height: 1.5;
 }
 
+.summary-container {
+  margin-top: 2rem;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-left: 4px solid #2980b9;
+}
+
+.summary-container h3 {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.summary-section {
+  margin-bottom: 1.8rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.summary-section h4 {
+  font-size: 1.1rem;
+  color: #3498db;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.8rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #7f8c8d;
+  margin-bottom: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.info-value {
+  color: #2c3e50;
+}
+
+.info-list {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  color: #34495e;
+}
+
+.info-list li {
+  margin-bottom: 0.5rem;
+}
+
+.timeline {
+  border-left: 2px solid #3498db;
+  padding-left: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #3498db;
+  left: -1.6rem;
+  top: 0.3rem;
+}
+
+.timeline-date {
+  font-weight: 600;
+  color: #3498db;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.timeline-title {
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-detail {
+  color: #34495e;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.imaging-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.imaging-table th,
+.imaging-table td {
+  padding: 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.imaging-table th {
+  font-weight: 600;
+  color: #7f8c8d;
+  background-color: #f9f9f9;
+}
+
+.treatments-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.treatment-item {
+  background-color: #f9f9f9;
+  padding: 0.8rem;
+  border-radius: 4px;
+  border-left: 3px solid #3498db;
+}
+
+.treatment-item h5 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.prognosis {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 4px;
+  border-left: 3px solid #27ae60;
+  color: #34495e;
+}
+
+.issues-section {
+  border-left: 3px solid #e74c3c;
+}
+
+.issues-list li {
+  color: #7f8c8d;
+}
+
+.summary-error {
+  background-color: #ffebee;
+  padding: 1rem;
+  border-radius: 4px;
+  border-left: 3px solid #e74c3c;
+}
+
+.summary-error h4 {
+  color: #c62828;
+  margin-bottom: 0.5rem;
+}
+
+.fallback-summary {
+  border-left: 3px solid #f39c12;
+}
+
+.fallback-note {
+  background-color: #fff3e0;
+  padding: 0.5rem;
+  border-radius: 4px;
+  color: #e67e22;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.fallback-content {
+  color: #34495e;
+  line-height: 1.6;
+  font-size: 1rem;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.fallback-content p {
+  margin-bottom: 0.8rem;
+}
+
 @media (max-width: 768px) {
   .document-upload-page {
     padding: 1rem;

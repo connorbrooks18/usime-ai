@@ -1,25 +1,21 @@
-import './App.css';
-import HomePage from './pages/HomePage';
-import CreateIme from './pages/CreateIme';
-import DocumentUpload from './pages/DocumentUpload';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import './pages/HomePage.css';
-import './pages/CreateIme.css';
-import './pages/DocumentUpload.css';
-import './components/Navbar.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DocumentUpload from './pages/DocumentUpload';
+// import your other pages here
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/create-ime" element={<CreateIme />} />
-          <Route path="/document-upload" element={<DocumentUpload />} />
-        </Routes>
-      </div>
+      <Navbar />
+      <Routes>
+        {/* Redirect from root to document upload */}
+        <Route path="/" element={<Navigate to="/upload" replace />} />
+        
+        {/* Your existing routes */}
+        <Route path="/upload" element={<DocumentUpload />} />
+        {/* Other routes */}
+      </Routes>
     </Router>
   );
 }
