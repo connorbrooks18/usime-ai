@@ -4,8 +4,6 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import DocumentUpload from './pages/DocumentUpload';
 import DocumentHistory from './components/DocumentHistory';
-import CreateIme from './pages/CreateIme';
-import HomePage from './pages/HomePage';
 import AuthPage from './components/Auth';
 
 // Protected Route component
@@ -37,13 +35,13 @@ const AppContent = () => {
       <Routes>
         {/* Public routes */}
         <Route path="/login" element={
-          user ? <Navigate to="/" replace /> : <AuthPage />
+          user ? <Navigate to="/upload" replace /> : <AuthPage />
         } />
         
         {/* Protected routes */}
         <Route path="/" element={
           <ProtectedRoute>
-            <HomePage />
+            <Navigate to="/upload" replace />
           </ProtectedRoute>
         } />
         
@@ -59,14 +57,8 @@ const AppContent = () => {
           </ProtectedRoute>
         } />
         
-        <Route path="/create-ime" element={
-          <ProtectedRoute>
-            <CreateIme />
-          </ProtectedRoute>
-        } />
-        
         {/* Catch all route */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/upload" replace />} />
       </Routes>
     </div>
   );
