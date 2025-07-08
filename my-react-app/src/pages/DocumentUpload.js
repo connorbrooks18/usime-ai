@@ -48,6 +48,7 @@ function DocumentUpload() {
       // Send the file to our Flask backend
       const response = await fetch('http://localhost:5000/upload', {
         method: 'POST',
+        credentials: 'include',
         body: formData
       });
       
@@ -55,6 +56,8 @@ function DocumentUpload() {
       
       if (response.ok) {
         setUploadStatus(`Successfully processed ${result.filename}!`);
+        console.log('Summary received:', result.summary);
+        console.log('Summary type:', typeof result.summary);
         setSummary(result.summary);
       } else {
         throw new Error(result.error || 'Failed to process file');

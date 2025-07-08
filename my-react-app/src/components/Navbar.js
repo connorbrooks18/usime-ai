@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import './Navbar.css';
 
 function Navbar() {
   const location = useLocation();
+  const { user, logout } = useAuth();
+  
+  const handleLogout = () => {
+    logout();
+  };
   
   return (
     <nav className="navbar">
@@ -11,11 +17,23 @@ function Navbar() {
         <h1>USIME.AI</h1>
       </div>
       <div className="main-nav">
-        <ul>          <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link></li>
-          <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link></li>
-          <li><Link to="/document-upload" className={location.pathname === '/document-upload' ? 'active' : ''}>Document Upload</Link></li>
-          <li><Link to="/create-ime" className={location.pathname === '/create-ime' ? 'active' : ''}>Submit IME</Link></li>
+        <ul>
+          <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link></li>
+          <li><Link to="/upload" className={location.pathname === '/upload' ? 'active' : ''}>Document Upload</Link></li>
+          <li><Link to="/create-ime" className={location.pathname === '/create-ime' ? 'active' : ''}>Create IME</Link></li>
         </ul>
+      </div>
+      <div className="auth-section">
+        {user ? (
+          <div className="user-info">
+            <span>Welcome, {user.username}!</span>
+            <button onClick={handleLogout} className="logout-btn">Logout</button>
+          </div>
+        ) : (
+          <div className="auth-buttons">
+            <Link to="/login" className="login-btn">Login</Link>
+          </div>
+        )}
       </div>
     </nav>
   );

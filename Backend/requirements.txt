@@ -3,4 +3,6 @@ pytesseract
 openai
 flask
 flask-cors
+flask-login
+flask-sqlalchemy
 werkzeug
