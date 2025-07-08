@@ -13,7 +13,7 @@ const DocumentHistory = () => {
 
   const fetchDocuments = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/documents', {
+      const response = await fetch('/api/documents', {
         credentials: 'include'
       });
       
@@ -33,7 +33,7 @@ const DocumentHistory = () => {
 
   const handleDocumentClick = async (documentId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/documents/${documentId}`, {
+      const response = await fetch(`/api/documents/${documentId}`, {
         credentials: 'include'
       });
       
@@ -54,7 +54,7 @@ const DocumentHistory = () => {
     
     if (window.confirm('Are you sure you want to delete this document?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/documents/${documentId}`, {
+        const response = await fetch(`/api/documents/${documentId}`, {
           method: 'DELETE',
           credentials: 'include'
         });
