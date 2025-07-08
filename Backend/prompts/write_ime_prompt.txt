@@ -1,0 +1,431 @@
+You are a medical assistant AI helping a multi-board-certified doctor write IMEs (Independent Medical Examinations) for the use in courts by lawyers for personal-injury cases.
+
+Input: JSON format document including:
+	"records": "Long text of all related medical records scanned in. Expect OCR errors.",
+	"interview_notes": "Notes gathered by doctor during an interview. Decision/Assessment should be largely based on this interview",
+	"questions": "Any specific questions requested by the lawyer/court needing the IME"
+
+Output: JSON format document exclusively including:
+	"confusions": "Anything you find contradictory or strange in the collection of records and notes. Leave this empty if everything was clear",
+	"report": "Professionally-formatted IME including all elements included in a standard IME, the provded example IME, and everything specifically added in the questions"
+
+
+Ensure the report:
+	-uses concise paragraphs with clear topic labels
+	-avoids unnecessary jargon (but don't shy away from it either)
+	-preserves critical medical and legal details
+	-follows all guidelines for IME-writing
+
+This is for professional use. Be accurate, thorough, and neutral.
+
+
+EXAMPLE IME:
+
+
+September 29, 2023 
+
+
+
+Mr. John Doe
+Attorney at Law
+Doe Law Office
+300 Walnut St. Ste 260
+Des Moines, IA  50309
+
+RE:			Smith, William 
+DOB:			08/27/1961
+Date of Injury:	02/18/2020  to the low back
+
+Dear Mr. Doe:
+
+Mr. Smith presented to my office on September 20, 2023.  It was confirmed that the patient was scheduled for an Independent Medical Evaluation (IME) at the request of the above client.  The IME process was explained to the patient.  The history was provided by the examinee who was cooperative and completed our questionnaire.  The patient arrived on time for the appointment and reported no difficulties associated with the examination.  
+
+Records reviewed include medical records from:  The Iowa Clinic/Dr. Mahoney, The Iowa Clinic/Dr. Aderibigbe, Defense Expert William Jacobson IME, Dr. Xu, SSA Disability Decision, DMOSPT post hip surgery, DMOS, The Iowa Clinic, Iowa Ortho, Medical Billings, Metro Anesthesia and Pain Management, Primary Health Care, Select PT, Sexton Chiropractic.  
+
+HISTORY OF PRESENT ILLNESS:  Mr. Smith is a 62-year-old African-American male who was injured in a motor vehicle collision that occurred on 02/18/2020 injuring his low back.  
+
+He states that he was a restrained front seat passenger.  His co-worker was driving them home from work.  As they was coming to a stop light, he was not paying attention and tried not to hit the vehicle in front of him.  Their vehicle ran up on a curb and ran into the back of the vehicle.  His body was jerked around, hitting the door on the right side.  He immediately had rib cage pain on the right and side pain.  He states that he began to have very severe back pain and hip pain, which got to where he could hardly walk because he was in so much pain.  Everything went downhill from there after about two months.  He states he has had back pain before but managed to work every day.  
+
+
+
+
+September 29, 2023 
+Page 2
+
+RE:  SMITH, WILLIAM 
+
+
+He states that he did not go to the emergency room, but he went to work the next day.  He still had a lot of pain and then he went to his chiropractor.  His chiropractor kept him off of work for a while and did manipulations.  He eventually was referred to Dr. Sykes for an epidural of his back.  However, it did not help.  He was also seen by his primary care physician Dr. Ronnie Hawkins.  He sent him to physical therapy, but that only increased the pain.  He then was sent to Dr. Piper who got an MRI, however, did not recommend surgery.  He recommended injections.  
+
+He was also seen by Dr. Mahoney, who evaluated his right hip.  He recommended hip injections and hip surgery.  
+
+He was then later seen by Dr. Bremner who did a total hip replacement and has had good results from that.  He has less hip pain, but now he just has back pain that radiates into both lower extremities.  He states that he went back to Dr. Piper again because he was still having back pain and Dr. Piper sent him to Dr. Xu who did radiofrequency ablations.  However, that did not help.  
+
+He was also seen by Dr. Aderibigbe who evaluated him.  However, he was unable to treat with him because of insurance.  Dr. Aderibigbe felt that the motor vehicle accident aggravated his back and hips.  
+
+He also was seen by Dr. Cassim Igram in April of 2023 and is to see him again in a couple of weeks.  He states that recently he has been to Des Moines Core, which is a chiropractor who does pain treatments because he has a lot of muscle spasms in the back and he has been able to decrease his muscle spasms and stand straighter.  
+
+After the accident, he could not go back to work and had arthritis in his hip, which got worse after the accident.  In spite of the care, he still complains of pain.  His care is summarized below.  
+
+The Iowa Clinic Dr. Mahoney (1 Page):  
+
+On 03/11/2021, he was seen and evaluated for a followup visit by Dr. Craig Mahoney.  He was status post right hip intraarticular injection on 12/12/2020.  He had immediate improvement of his symptoms.  He has a history of back and hip problems.  The hip pain worsened after he was involved in a car accident.  Since he had improvement from the hip injection, he felt a significant portion of his pain in the right lower extremity was coming from the hip.  He diagnosed him with right hip degenerative joint disease.  They discussed treatment options including a hip replacement.  He was going to consider this in the future.  
+
+The Iowa Ortho/Dr. Aderibigbe (3 Pages):  
+
+On 03/30/2021 he was seen and evaluated by Dr. Aderibigbe with complaints of right hip pain.  He has been having right hip pain since 02/18/2020 when he was rear ended as a passenger of a car.  His hip was jammed up.  He has pain when he was sitting, sleeping, walking, and standing.  It was alleviated by stretching, walking, and ibuprofen.  He took his history and did an examination.  He reviewed the care that has been done.  He diagnosed him with primary osteoarthritis of the right hip.  
+
+September 29, 2023 
+Page 3
+
+RE:  SMITH, WILLIAM 
+
+
+Chronic bilateral low back pain without sciatica.  Other chronic pain.  He reviewed the x-rays of the hip and pelvis from December 2020, which showed moderate to severe osteoarthritis of the right hip.  Moderate osteoarthritis of the left hip.  They discussed treatment options.  The plan was to proceed with the direct anterior hip replacement. 
+
+Capital Orthopedics/Dr. William Jacobson:  
+
+On 06/23/2022 he was seen and evaluated by Dr. William Jacobson for an independent medical evaluation.  He did not feel that the hip and low back were materially aggravated by the motor vehicle collision.  
+
+Dr. Xu (1 Page):  
+
+On 08/19/2022 he was seen and evaluated by Dr. Xu in the pain management clinic to evaluate back and leg pain.  He has had back pain for 15 years and leg pain for about the past two years.  He was in a motor vehicle accident in February 2020 and the back and leg pain were aggravated after the accident.  The leg pain improved after hip surgery.  He reviewed the MRI of the lumbar spine done in July of 2020, October 2021, and June 2022.  He felt that the remaining symptoms are likely from the advanced back joint arthropathy, underlying impingement of the nerve roots, and persistent hip discomfort.  
+
+SSA Disability Decision (11 Pages):  
+
+Record was reviewed.  
+
+DMOS PT Post Surgery (10 Pages):  
+
+On 09/29/2021 he was initially seen in physical therapy to begin a hip rehabilitation program.  
+
+On 10/25/2021 he was discharged from physical therapy.  
+
+DMOS (10 Pages):  
+
+On 05/25/2021 he was initially seen by Dr. Barron Bremner with complaints of severe right sided hip and low back pain.  He was looking into disability.  He was there for a second opinion.  He took his history and did an examination.  X-rays of the right hip showed near bone on bone right hip arthritis with CAM impingement.  Large osteophytes are present.  He diagnosed him with right hip severe arthritis.  They discussed treatment options.  He recommended a right total hip arthroplasty.  He has failed a right hip injection, activity modification, physical therapy, and antiinflammatories.  
+
+On 07/30/2021 he underwent right total hip replacement anterior with navigation (right).  Navigation of total hip arthroplasty done by Dr. Barron Bremner.  Postoperative diagnosis was right DJD, hip.  
+
+
+September 29, 2023 
+Page 4
+
+RE:  SMITH, WILLIAM 
+
+
+On 08/12/2021 he returned for a followup visit and was seen by McKenna Zimmerman, PA-C.  He was doing well and weaning himself from the pain medicine.  He was less reliant on the assistive walking device.  He was two-week status post right total hip arthroplasty.  He was to continue prescribed DVT prophylaxis.  Continue to wean to take Tylenol alone or no medicine for pain.  Increase walking distance to a mile at a time with or without assistive walking devices.  Avoid heavy lifting, heavy yard work or housework, ladders and mowing the lawn.  
+
+On 09/09/2021 he returned for a followup visit with Dr. Bremner.  He was six-week status post right total hip arthroplasty.  He was doing well and weaning himself from pain medicine.  He takes tramadol, Tylenol, and ibuprofen everyday.  X-rays show the right hip components in good position with no evidence of loosening or failure.  Alignment adequate.  He recommended stopping DVT prophylaxis.  Wean to Tylenol alone or no medicine for pain.  Increase walking distance.  Continue range of motion, exercises, and strengthening.  No running.  Take antibiotics for dental procedures.  No heavy lifting or crawling on the ground or impact to the hip for six to eight more weeks.  
+
+The Iowa Clinic (68 Pages):  
+
+On 07/01/2020 MRI of the lumbar spine with and without contrast showed multilevel advanced degenerative changes at the lumbar spine involving L3-L4, L4-L5 and L5-S1.  The largest area of disc bulge was at L4-L5.  The segment with the highest degree of central canal stenosis was L3-L4. 
+
+On 12/01/2020, he was initially seen by Dr. John Piper for a neurosurgical consultation of back pain with radiation to the right hip and posterior leg.  He has muscle cramps in the right hamstring.  The right leg also gives out.  He was involved in a motor vehicle accident and was thrown sideways and forward jamming his leg as 
+well as his back area.  Since that time, he has had pain that was in his sacroiliac area radiating along the side of his hip.  It extends into his groin.  He reviewed the MRI, which showed extensive degenerative of changes to lumbar spine at L3-L4, L4-L5, and L5-S1.  He has spondylolisthesis at L3-L4.  He took his history and did an examination.  He diagnosed him with right hip pain.  He did not feel that he would have any options from a neurosurgical standpoint.  He feels the hip may be the main symptomatic issue and recommended an orthopedic doctor to evaluate the hip.  
+
+On 12/01/2020 flexion/extension x-rays of the lumbar spine showed,
+    1. No acute osseous abnormality.  No abnormal motion on the flexion or extension views.  
+    2. Multilevel degenerative changes of the spine.  
+
+On 10/01/2021 MRI of the lumbar spine without contrast showed,
+    1. Moderate multilevel lumbar spondylosis, together with levels of moderate to severe facet and ligamentous hypertrophy cause moderate to severe central canal and lateral recess stenosis at the L3-L4 level with more mild to moderate central canal and lateral recess stenosis at L4-L5.  Some impingement upon traversing nerve roots at these levels was possible.  Otherwise, moderate to severe foraminal stenosis, most significant L4-L5 and L5-S1 may lead to some impingement upon 
+September 29, 2023 
+Page 5
+
+RE:  SMITH, WILLIAM 
+
+
+exiting nerve roots at these levels.  Correlation with radiculopathy symptoms recommended.  Overall findings similar to 2020 prior.  
+
+On 11/02/2021 he returned for a followup visit with Dr. Piper.  They reviewed the MRI of his lumbar spine.  He continues to have low back pain radiating to the right posterior leg to the calf.  They reviewed the MRI report.  He diagnosed him with lumbar radiculopathy.  They discussed treatment options including epidurals.  
+
+On 11/16/2021 he was initially seen by Dr. Jun Xu for evaluation of his pain.  He noted that he has had low back pain for 15 years.  Leg pain has been around for two years.  The back pain was almost constant.  It worsens with standing and walking and sitting.  The leg pain was more intermittent and typically worsens with standing and walking.  He took his history and did an examination.  He diagnosed him with lumbar radiculopathy.  Spinal stenosis of lumbar region with radiculopathy.  Neuropathic pain.  They discussed treatment options.  He recommended lumbar epidurals.  
+
+On 11/16/2021 he underwent interlaminar lumbar epidural steroid injection done by Dr. Jun Xu.  Post procedure diagnosis was lumbar radiculopathy.  
+
+On 12/16/2021 he returned for a followup visit with Dr. Piper.  He was post L4-L5 paramedian ESI of the lumbar spine with 20% relief of his pain.  The low back pain radiates to his right posterior leg down to the knee.  The left leg pain goes down to the calf muscle.  He did not feel that surgery was going to be of benefit to him as he has significant facet arthropathy.  He recommended that he be seen in pain clinic to explore a facet block or rhizotomy.  
+
+On 12/16/2021 scoliosis x-ray series showed mild levoconvex curvature of the lower cervical and upper thoracic spine of 7 to 8 degrees as measured by the Cobb method.  No significant scoliotic curvature in the mid to lower thoracic spine.  Mild dextroconvex curvature of the lumbar spine of just under 13 degrees as measured by the Cobb method.  Loss of lumbar lordosis.  Multilevel degenerative changes throughout the spine.  
+
+On 12/27/2021 he returned for a followup visit with Dr. Xu.  He had a lumbar epidural at the last visit and has 30% pain relief.  It was along the lumbosacral junction, right worse than left.  They discussed treatment options.  He would like to proceed with medial branch blocks from L3-L4, L4-L5, and L5-S1.  
+
+On 02/01/2022 he underwent diagnostic lumbar medial branch nerve blocks at L3-L4, L4-L5, and L5-S1 on the right done by Dr. Jun Xu.  Post procedure diagnosis was lumbar facet arthropathy.  
+
+On 02/17/2022 he underwent diagnostic lumbar medial branch nerve blocks L3-L4, L4-L5 and L5-S1 on the right done by Dr. Jun Xu.  Post procedure diagnosis was lumbar facet arthropathy.  
+
+On 03/29/2022 he underwent a radiofrequency ablation procedure-lumbar done by Dr. Jun Xu.  Postoperative diagnosis was lumbar facet arthropathy.  
+
+September 29, 2023 
+Page 6
+
+RE:  SMITH, WILLIAM 
+
+
+On 06/14/2022 he returned for a followup visit with Dr. John Piper.  He recently had an ESI and then had block and radiofrequency ablation of his lumbar nerves and feels his pain has increased since then.  He has low back pain radiating to bilateral legs down to his lower legs.  He diagnosed him with lumbar radiculopathy, which was a new left-sided radicular pain.  He recommended a new MRI.  Lumbar flexion/extension x-rays.  
+
+On 06/16/2022 MRI of the lumbar spine without contrast showed stable findings since 10/01/2021.  Overall, the worst levels continues to be L3-L4 and L4-L5.  
+
+On 06/16/2022 x-rays of the lumbar spine showed loss of normal lumbar lordosis.  Narrowing of the disc space of L4-L5 and L5-S1.  Multilevel posterior end plate bony osteophytes and facet arthropathy.  Flexion and extension images reveals no subluxation.  
+
+On 08/19/2022 Dr. Jun Xu wrote a letter to whom it may concern regarding Mr. Smith.  
+
+On 03/20/2023 MRI of the lumbar spine without contrast showed stable findings since 07/01/2020.  The worst levels continue to be L3-L4 and L4-L5.  At L3-L4 there was advanced bilateral facet arthropathy.  Moderate to large circumferential disc bulge.  Moderate to severe central canal stenosis with flattening of thecal sac at 8 mm.  Bilateral lateral recesses stenosis.  Mild to moderate bilateral neural foramina; stenosis, greater on the left.  At L4-L5 significant disc space narrowing, Modic marrow degenerative changes.  Advanced bilateral facet arthropathy.  Large broad based circumferential disc bulge/disc protrusion.  Mild to moderate bilateral central canal stenosis.  Bilateral moderate to advanced proximal neural foraminal stenosis.  
+
+On 04/10/2023 he was seen and evaluated by Dr. Cassim Igram with complaints of low back pain.  He noted that he was in an accident in February of 2020 that exacerbated his back pain.  He has had low back pain for many years with radiation into the back of bilateral legs into his calves.  He has seen Dr. Piper but was referred for higher level of care.  He has tried to ESI's, radiofrequency ablation, ibuprofen, PT, and chiropractic.  He has also tried CBD oil.  He took his history and did an examination.  He reviewed the MRI of the lumbar spine.  He diagnosed him with significant stenosis at L3-L4.  He recommended conservative treatment.  He was to continue activity as tolerated.  Continue conservative care.  Continue with weight loss.  
+
+Iowa Ortho (9 Pages): 
+
+On 04/28/2020 he was seen and evaluated by Dr. Brett Rosenthal for low back pain with right lower extremity radiating pain and subjective weakness in his right lower extremity.  He has had it for several years, but it got worse after a motor vehicle collision on 02/18/2020.  He took his history and did an examination.  X-rays of the lumbar spine showed slight left hemipelvis elevation.  Severe right hip degenerative change.  Moderate left hip degenerative change.  A 16 degree apex right coronal curvature of the lumbar spine from T12-L5.  Multilevel spondylitic change present.  There was a radiopaque spot in the right upper abdomen likely a renal calculus.  
+
+September 29, 2023 
+Page 7
+
+RE:  SMITH, WILLIAM 
+
+
+There was grade 1 anterolisthesis of L3-L4 with disc height loss at L4-L5 and L5-S1 most notably.  He diagnosed him with lumbar back pain with radiculopathy affecting the right low extremity.  Dorsalgia.  Lumbar scoliosis.  Lumbar spondylolisthesis L3-L4 grade 1.  Right hip degenerative joint disease.  He recommended an MRI of the lumbar spine for further evaluation.  
+
+On 12/02/2020 he returned for a followup visit with complaints of right hip pain.  He has a history of low back pain that has been previously evaluated and has had an MRI of his lumbar spine, which showed degenerative changes.  He has had epidural steroid injections into his lumbar spine that provided little to no relief.  His hip pain became worse 10 months ago when he was rear ended.  He has a loss of right hip range of motion.  Dr. Mahoney recommended an intraarticular steroid injection of the right hip, which was done.  The injection did help improve his hip pain.  
+
+Medical Billings (32 Pages):  
+
+Record was reviewed.  
+
+Mercy Anesthesia and Pain Management (18 Pages):  
+
+On 06/18/2020, he was seen and evaluated by Dr. James Sykes for treatment of his lumbar spine pain.  He noted that he has had injury during a motor vehicle accident in February of 2020.  He describes his pain as cramping, penetrating, deep, and aching.  It is in low back on the right side.  He has additional pain in the neck.  The pain radiates from the low back on the right to the right hip and down the right posterior leg to the calf.  He complains of whole leg weakness.  He took his history and did an examination.  He diagnosed him with chronic pain syndrome.  Other intervertebral disc degeneration, lumbar region.  Other intervertebral disc displacement, lumbar region.  Radiculopathy, lumbar region.  He recommended an MRI to evaluate for herniation.  
+
+On 08/04/2020 he returned for followup visit with Dr. Sykes.  He underwent a lumbar epidural steroid injection done by Dr. Sykes.  Post procedure diagnosis was chronic pain syndrome.  Other intervertebral disc degeneration, lumbar region.  Other intervertebral disc displacement, lumbar region.  Lumbar radiculopathy.  Sprain of ligaments of lumbar spine.  
+
+On 08/22/2020 he returned for a followup visit with Dr. Sykes.  He was still complaining of lumbar pain.  He experienced very short-term relief from the ESI.  He recommended that he continue chiropractic therapy and see a neurosurgeon on December 01.
+
+On 12/17/2020 he returned for a followup visit with Dr. Sykes.  He has seen  Dr. Piper, the neurosurgeon, who felt the symptoms were emanating from the right hip.  Dr. Mahoney at Iowa Ortho diagnosed osteoarthritis of the right hip and recommended right hip injection.  He underwent arthrocentesis of the right hip.  Post procedure diagnosis was pain in right hip.  Primary osteoarthritis of the right hip.  
+
+
+
+September 29, 2023 
+Page 8
+
+RE:  SMITH, WILLIAM 
+
+
+Primary Health Care (28 Pages):  
+
+On 02/27/2020 he was seen and evaluated by Dr. Ronnie Hawkins after a motor vehicle accident on 02/18/2020.  He was complaining of pain in his rib cage and back.  He has been taking ibuprofen three times a day and cyclobenzaprine three times a day.  He took his history and did an examination.  He diagnosed him with a history of motor vehicle accident.  Chest wall pain.  He was to continue his current pain medication regimen.  He gave him a work release.  
+
+On 03/16/2020 he returned for a followup visit with Dr. Hawkins.  He was still complaining of pain in the low back that was 8/10.  He had attended one session of physical therapy, which caused him to have increased pain so he did not return.  He recommended that he continue his medications and gave him a work release.  
+
+On 03/26/2020 he returned for a followup visit with Dr. Hawkins.  He was complaining of severe pain on both sides of his rib cage and it hurts to twist and turn or take a deep breath.  He has been using ibuprofen, but it irritates his stomach.  He was to continue his current medications.  
+
+On 04/27/2020 he returned for a followup visit with Dr. Hawkins.  He complains of rib cage pain and low back pain radiating down his right leg.  He referred him to Iowa Orthopedics for further evaluation and treatment.  
+
+On 10/05/2020 he returned for a followup visit with Dr. Hawkins.  He was still complaining of chronic back pain.  He has been seen at Metro Pain Management.  He had MRI two months ago, which showed a bulging disc.  Epidural steroid injection helped to decrease pain for about one week.  He recommended that he follow up with a Metro Pain Specialist.  
+
+On 12/22/2020 he returned for a followup visit with Dr. Hawkins.  He noted that he was recently seen by Dr. Piper, a neurosurgeon, who felt that the pain was coming from his right hip.  He did not think it was related to his back.  He was referred to the Iowa Orthopedics Center where he saw Dr. Mahoney.  Dr. Mahoney recommended an intraarticular steroid injection of the right hip, which was done.  The injection did help improve his hip pain.  He recommended discontinuing ibuprofen and starting Celebrex.  He encouraged adhering to a low sodium diet.  
+
+Primary Health Care (9 Pages):  
+
+On 09/14/2021 he was seen and evaluated by Elisabeth Neighbors, ARNP-BC with complaints of right hip and back pain.  He noted that he was under the care of Dr. Bremner for his right hip and Dr. Piper for his back.  He was still having pain and did not want to use his tramadol.  He would like to try diclofenac for his pain.  He took his history and did an examination.  She diagnosed with low back pain.  Dr. Piper wants a new MRI of his lumbar spine.  She switched him to diclofenac, tramadol and ibuprofen.  He was to stop Celebrex.  
+
+
+
+
+September 29, 2023 
+Page 9
+
+RE:  SMITH, WILLIAM 
+
+
+On 09/21/2021 he returned for a followup visit with Ms. Neighbors, ARNP-BC.  He was there to discuss his MRI.  He has been working with pain management orthopedics to determine future progress with his back.  The MRI shows narrowing and degeneration of damage.  He was going to have nerve block and diagnostic injections next week.  She recommended that he continue to follow with Dr. Piper and DMOS.  He was to stop diclofenac and use ibuprofen.  
+
+Select PT (12 Pages):  
+
+On 03/05/2020 he was initially seen in physical therapy to start rehabilitation program.  
+
+On 04/27/2020 he was discharged from physical therapy.  
+
+Sexton Chiropractic:  
+
+On 02/18/2020 he was seen and evaluated by Dr. Timothy Sexton, DC with complaints of neck pain and low back pain after a motor vehicle accident.  He got hit head on.  It occurred when the vehicle lost control.  He was a front passenger wearing a seat belt.  He took his history and did examination.  He diagnosed him with segmental and somatic dysfunction of lumbar region.  Other intervertebral disc degeneration, lumbar region.  Segmental and somatic dysfunction of sacral region.  Spinal instabilities, lumbar sacral region.  He did chiropractic adjustments of the cervical, pelvic and sacral area.  He was seen regularly until 09/16/2022 for chiropractic care.  
+
+DIAGNOSTIC TESTS:
+04/28/2020 x-rays of the lumbar spine showed slight left hemipelvis elevation.  Severe right hip degenerative change.  Moderate left hip degenerative change.  A 16 degree apex right coronal curvature of the lumbar spine from T12-L5.  Multilevel spondylitic change present.  There was a radiopaque spot in the right upper abdomen likely a renal calculus.  There was grade 1 anterolisthesis of L3-L4 with disc height loss at L4-L5 and L5-S1 most notably.  
+07/01/2020 MRI of the lumbar spine without contrast and with contrast showed multilevel advanced degenerative changes at the lumbar spine involving L3-L4, L4-L5 and L5-S1.  The largest area of disc bulge was at L4-L5.  The segment with the highest degree of central canal stenosis was L3-L4.  
+12/01/2020 flexion/extension x-rays of the lumbar spine showed 1. No acute osseous abnormality.  No abnormal motion on the flexion or extension views.  2. Multilevel degenerative changes of the spine.
+05/25/2021 x-rays of the right hip showed near bone on bone right hip arthritis with CAM impingement.  Large osteophytes are present.   
+09/09/2021 x-rays show the right hip components in good position with no evidence of loosening or failure.  Alignment adequate.   
+10/01/2021 MRI of the lumbar spine without contrast showed 1. Moderate multilevel lumbar spondylosis, together with levels of moderate to severe facet and ligamentous hypertrophy cause moderate to severe central canal and lateral recess stenosis at the L3-L4 level with more mild to moderate central canal and lateral recess stenosis at L4-L5.  Some impingement upon traversing 
+September 29, 2023 
+Page 10
+
+RE:  SMITH, WILLIAM 
+
+
+nerve roots at these levels was possible.  Otherwise, moderate to severe foraminal stenosis, most significant L4-L5 and L5-S1 may lead to some impingement upon exiting nerve roots at these levels.  Correlation with radiculopathy symptoms recommended.  Overall findings similar to 2020 prior.  
+12/16/2021 scoliosis x-ray series showed mild levoconvex curvature of the lower cervical and upper thoracic spine of 7 to 8 degrees as measured by the Cobb method.  No significant scoliotic curvature in the mid to lower thoracic spine.  Mild dextroconvex curvature of the lumbar spine of just under 13 degrees as measured by the Cobb method.  Loss of lumbar lordosis.  Multilevel degenerative changes throughout the spine.  
+06/16/2022 MRI of the lumbar spine without contrast showed stable findings since 10/01/2021.  Overall, the worst levels continues to be L3-L4 and L4-L5.   
+06/16/2022 x-rays at lumbar spine showed loss of normal lumbar lordosis.  Narrowing of the disc space of L4-L5 and L5-S1.  Multilevel posterior end plate bony osteophytes and facet arthropathy.  Flexion and extension images reveals no subluxation.   
+03/20/2023 MRI of the lumbar spine without contrast showed stable findings since 07/01/2020.  The worst levels continues to be L3-L4 and L4-L5.  At L3-L4 there was advanced bilateral facet arthropathy.  Moderate to large circumferential disc bulge.  Moderate to severe central canal stenosis with flattening of thecal sac at 8 mm.  Bilateral lateral recesses stenosis.  Mild to moderate bilateral neural foramina; stenosis, greater on the left.  At L4-L5 significant disc space narrowing, Modic marrow degenerative changes.  Advanced bilateral facet arthropathy.  Large broad based circumferential disc bulge/disc protrusion.  Mild to moderate bilateral central canal stenosis.  Bilateral moderate to advanced proximal neural foraminal stenosis.  
+
+MEDICAL PROCEDURES:
+07/30/2021 right total hip replacement anterior with navigation (right).  Navigation of total hip arthroplasty done by Dr. Barron Bremner.  Postoperative diagnosis was right DJD, hip.  
+
+CURRENT STATUS:  Currently he complains of pain in the low back that he described as aching, throbbing, shooting, tiring, continuous, and miserable.  It ranges from 4-8/10.  It averages 6/10.  Right now it is 7/10.  A TENS unit, cold packs, ibuprofen, and chiropractic pain therapy help him feel better.  Walking, standing, lifting, bending down, and sitting make it worse.  
+
+He states that ibuprofen and chiropractic pain therapy gave him a moderate amount of relief.  The pain interferes moderately with walking one block, lifting 10 pounds, sitting and standing for half an hour, sleep, social activities, traveling up to one hour by car, his relationships, chores around the house, showering and bathing, writing and typing, dressing, concentration, and his mood.  The pain interferes moderately to severely with his daily activities and his sexual activities.  
+
+PAST MEDICAL HISTORY:  Arthritis.  
+
+PAST SURGICAL HISTORY:  Hip surgery.
+
+September 29, 2023 
+Page 11
+
+RE:  SMITH, WILLIAM 
+
+
+FAMILY HISTORY:  Stroke, diabetes, hypertension, and heart disease.
+
+ALLERGIES:  Penicillin.
+
+MEDICATIONS:  Current medications include ibuprofen 800 mg once a day, occasionally Tylenol.  
+
+REVIEW OF SYSTEMS:  He complains of sleeping problems.
+
+SOCIAL HISTORY:  He denies any alcohol, recreational drug, or tobacco use in any form.
+
+OCCUPATIONAL HISTORY:  He has driven a school bus.  At the time of the accident, he was working for Seneca Tank as a shop assistant.  He states that they would build tanker trucks.  He also worked for Kemin Foods as an extraction operator previous to working at Seneca Tank.  He states he has been unable to return to work because of his back pain.  He did apply for Social Security Disability and is receiving that now.  
+
+PHYSICAL EXAMINATION:  He is a well-developed, obese African-American male in no acute distress.  Blood pressure is 158/100, pulse is 73 and regular, and respirations are 17.  He is 74" tall and weighs 263 lbs.  He is alert and oriented x 3 and cooperative with the exam.  
+
+Reflexes in the lower extremities are 1+/4 and symmetrical.  Muscle tone and bulk are within normal limits.  Muscle strength is 5+/5.  Sensation is intact to light touch, pinprick, and proprioception.  Periphery has no cyanosis, clubbing, or edema.  
+
+Right hip flexion is 70 degrees, abduction is 40 degrees, adduction is 15 degrees, external rotation is 30 degrees, internal rotation is 30 degrees.  There is a well healed scar on the hip from the surgery.  There is no tenderness, warmth or redness of the scar.
+
+Lumbar flexion is 40 degrees, extension is 5 degrees, side bending to the right is 20 degrees and to the left is 10 degrees.  He has a positive straight leg raise bilaterally.  He has a negative anterior and posterior drawer test.  Medial and lateral collateral ligaments of both knees are intact.  He is able to heel and toe walk.  He ambulates with a normal gait.  
+
+Functional Assessment Questionnaire:  
+
+He states it is minimally difficult to drive.  
+
+He states it is moderately difficult to sleep normally, go up and down stairs, do food prep, cook, and eat, walk, groom, get up and down from a chair or bed, dress, tie his shoes and button his shirt, reach above his head or across his body, and engage in recreational activity.  
+
+He states it is very difficult to sit and stand for normal periods of time, squat down to pick up an item, and run and jog.  
+September 29, 2023 
+Page 12
+
+RE:  SMITH, WILLIAM 
+
+
+He states he is unable to do all the activities required of his job.  
+
+IMPRESSION:  
+    1. History of severe right and moderate left hip degeneration.
+    2. History of multilevel advanced degenerative change involving L3-L4, L4-L5 and L5-S1.
+    3. Status post motor vehicle collision on 02/18/2020 with acute low back and right hip pain strain.  
+    4. Status post right total hip replacement anterior with navigation (right).  Navigation of total hip arthroplasty on 07/30/2021 done by Dr. Barron Bremner.  Postoperative diagnosis was right DJD, hip.  
+    5. Chronic back pain with bilateral low extremity radiculopathy.  
+
+DISCUSSION:  Your questions will be answered in succession.  Impairment is determined as per the 5th Edition of the Guides “as a guide for determining permanent partial disabilities under Iowa Code section (2)’a’ to ‘s.’”
+
+    1. Are William’s pain and functional limitations more likely than not the result of the motor vehicle collision in which he was involved on February 18, 2020?
+
+William’s pain and functional limitations were more likely than not the result of the motor vehicle collision in which he was involved on February 18, 2020.  Prior to this accident, he was able to work full duty without restrictions.  
+
+    2. Were William’s pre-existing lumbar spine conditions aggravated by the collision?
+
+William’s pre-existing lumbar spine conditions were aggravated by the collision on 02/18/2020.  Prior to this collision, he was able to work full duty without restrictions.  
+
+    3. Was William’s pre-existing right hip condition aggravated by the collision?
+
+William’s pre-existing right hip condition was aggravated by the collision.  Prior to this collision, he was able to work full duty without restrictions.  
+
+    4. What portion of William’s pain and limitations regarding his right hip are more likely than not the result of the motor vehicle collision in which he was involved on February 18, 2020?
+
+William did have severe degenerative changes in the right hip.  However, he was able to work full duty without restrictions.  After the collision, he had so much pain, that he required a total right hip replacement to address his right hip pain.
+
+    5. What portion of William’s pain and limitations regarding his lumbar spine are more likely than not the result of the motor vehicle collision in which he was involved on February 18, 2020?
+
+
+September 29, 2023 
+Page 13
+
+RE:  SMITH, WILLIAM 
+
+
+William did have multilevel advanced degenerative change involving L3-L4, L4-L5 and L5-S1.  However, he was able to work full duty without restrictions.  After the collision, he had so much pain that he was unable to work due to having to stand all day which triggered more back and leg pain.
+
+    6. Did the collision contribute in any way to William’s right hip replacement surgery in July 2021 or was the surgery the result of his pre-existing condition?
+
+William did have a history of severe degenerative right hip disease with pain.  However, the trauma of the collision increased the pain making the right hip replacement surgery in July 2021 needed to address his pain.  
+
+    7. Has William returned to his baseline prior to the collision with regard to his lumbar spine conditions?
+
+No, William has not returned to his baseline prior to the collision with regard to his lumbar spine conditions.  He is unable to stand and function for prolonged periods of time.
+
+    8. Is there any additional care or medications that may be reasonably required in the future as a result of William’s lumbar spine conditions sustained in this incident?  If so, describe the expected care, including the expected frequency, duration, and cost.
+
+Reasonable future medical care would be pain management.  This would include periodic physician visits, medications and/or injections.
+  
+    9. Assess what impact the February 18, 2020 motor vehicle collision has on his current conditions, including but not limited to, any physical or functional limitations.
+
+The pain interferes moderately with walking one block, lifting 10 pounds, sitting and standing for half an hour, sleep, social activities, traveling up to one hour by car, his relationships, chores around the house, showering and bathing, writing and typing, dressing, concentration, and his mood.  The pain interferes moderately to severely with his daily activities and his sexual activities.  
+
+He states it is moderately difficult to sleep normally, go up and down stairs, do food prep, cook, and eat, walk, groom, get up and down from a chair or bed, dress, tie his shoes and button his shirt, reach above his head or across his body, and engage in recreational activity.  He states it is very difficult to sit and stand for normal periods of time, squat down to pick up an item, and run and jog.  He states he is unable to do all the activities required of his job.  
+
+    10. Is William now susceptible to further issues in the future as a result of his lumbar back conditions sustained in the incident?
+
+
+
+September 29, 2023 
+Page 14
+
+RE:  SMITH, WILLIAM 
+
+
+William is susceptible to further issues in the future as a result of his lumbar back conditions sustained in the incident due to weakened back and inability to function well.
+
+    11. What, if any, restrictions would you place on William due to the collision only?
+
+Reasonable permanent restrictions would be to avoid repetitive bending, lifting and twisting.
+
+    12. Are William’s past medical billings customary and reasonable for the medical community?
+
+William’s past medical billings are customary and reasonable for the medical community.
+
+    13. Based on the American Medical Association’s Guides to the Evaluation of Permanent Impairment, would you assign William permanent impairment of the whole person, and what percentage of impairment would you assign William due to the car collision.  
+
+Low Back Pain:
+
+Using the AMA Guides to the Evaluation of Permanent Impairment, Fifth Edition, Chapter 15, table 15-3, page 384, he fits into DRE Lumbar Category II with 5-8% Impairment of the Whole Person.   His clinical history and examination findings are compatible with this injury.  He has asymmetric range of motion and muscle spasms.  I would assign 5% Impairment of the Whole Person due to the lumbar injury.
+
+The opinions rendered in this case are the opinions of this examiner.  This evaluation has been conducted on the basis of the representation of the claimant and medical examination.  It is the assumption that the claimant representations are true and correct.  If more information becomes available at a later date, an additional service/ report or reconsideration may be requested.  Such information may or may not change the opinions rendered in this evaluation.
+
+The fees for my examination of the claimant are reasonable and based on my training, experience and certification in performing such examinations as double board certified in physical medicine and rehabilitation by the American Osteopathic Board of Rehabilitation Medicine and the American Academy of Physical Medicine and Rehabilitation, as well as being certified as an independent medical evaluator by the American Board of Independent Medical Examiners.  The time was spent with the claimant in obtaining their history, performing the evaluation and preparing the report in addition to the time spent by my staff in preparing the report.
+
+
+
+
+
+September 29, 2023 
+Page 15
+
+RE:  SMITH, WILLIAM 
+
+
+Further, the opinions in this report are based on a reasonable degree of medical certainty and independent of the requesting client.  Medicine is both an art and a science and although a claimant may appear to be fit for return to duty there is no guarantee that the claimant will not be reinjured or suffer additional injury once he or she returns to work.  This opinion does not constitute, per se, a recommendation for specific claims or administrative functions to be made or enforced.  Please contact me if you have any further questions.  
+
+Sincerely,
+
+
+
+Mary M. Jane, D.O., F.A.A.P.M.R., F.A.O.C.P.M.R., C.I.M.E., C.L.C.P.
+Adjunct Professor of Rehabilitation Medicine, Des Moines University
+Fellow, American Academy of Physical Medicine and Rehabilitation
+Fellow, American Osteopathic College of Physical Medicine and Rehabilitation
+Board Certified, Independent Medical Examiner
+Certified, Life Care Planner
+
+
