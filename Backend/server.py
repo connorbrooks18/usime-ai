@@ -4,8 +4,9 @@ from flask_login import LoginManager, login_required, current_user
 import os
 from werkzeug.utils import secure_filename
 import sys
+import json
 from summarize import Summarizer
-from models import db, User
+from models import db, User, Document
 from auth_routes import register_auth_routes
 
 app = Flask(__name__)
@@ -70,12 +71,23 @@ def upload_file():
             # Generate structured JSON summary from PDF (for React frontend)
             summary_json = summarizer.summarize_from_pdf_as_json(file_path)
             
-            # Return the JSON summary with user info
+            # Save document to database
+            document = Document(
+                filename=filename,
+                original_filename=file.filename,
+                summary=json.dumps(summary_json),
+                user_id=current_user.id
+            )
+            db.session.add(document)
+            db.session.commit()
+            
+            # Return the JSON summary with user info and document ID
             return jsonify({
                 'success': True,
                 'filename': filename,
                 'summary': summary_json,
-                'user': current_user.username
+                'user': current_user.username,
+                'document_id': document.id
             })
             
         except Exception as e:
@@ -83,6 +95,57 @@ def upload_file():
             return jsonify({'error': f'Error processing file: {str(e)}'}), 500
     else:
         return jsonify({'error': 'Only PDF files are allowed'}), 400
+
+@app.route('/api/documents', methods=['GET'])
+@login_required
+def get_documents():
+    """Get all documents for the current user"""
+    documents = Document.query.filter_by(user_id=current_user.id).order_by(Document.upload_date.desc()).all()
+    return jsonify([doc.to_dict() for doc in documents])
+
+@app.route('/api/documents/<int:document_id>', methods=['GET'])
+@login_required
+def get_document(document_id):
+    """Get a specific document by ID"""
+    document = Document.query.filter_by(id=document_id, user_id=current_user.id).first()
+    if not document:
+        return jsonify({'error': 'Document not found'}), 404
+    
+    return jsonify(document.to_dict())
+
+@app.route('/api/documents/<int:document_id>', methods=['DELETE'])
+@login_required
+def delete_document(document_id):
+    """Delete a specific document"""
+    document = Document.query.filter_by(id=document_id, user_id=current_user.id).first()
+    if not document:
+        return jsonify({'error': 'Document not found'}), 404
+    
+    # Delete the file from disk
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], document.filename)
+    if os.path.exists(file_path):
+        try:
+            os.remove(file_path)
+        except OSError as e:
+            print(f"Error deleting file {file_path}: {e}")
+    
+    # Delete from database
+    db.session.delete(document)
+    db.session.commit()
+    
+    return jsonify({'success': True, 'message': 'Document deleted successfully'})
+
+@app.route('/api/user/stats', methods=['GET'])
+@login_required
+def get_user_stats():
+    """Get user statistics"""
+    document_count = Document.query.filter_by(user_id=current_user.id).count()
+    return jsonify({
+        'username': current_user.username,
+        'email': current_user.email,
+        'member_since': current_user.created_at.isoformat(),
+        'document_count': document_count
+    })
 
 if __name__ == '__main__':
     with app.app_context():

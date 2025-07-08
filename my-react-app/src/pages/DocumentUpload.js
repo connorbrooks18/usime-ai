@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './DocumentUpload.css';
 
 function DocumentUpload() {
@@ -55,9 +56,10 @@ function DocumentUpload() {
       const result = await response.json();
       
       if (response.ok) {
-        setUploadStatus(`Successfully processed ${result.filename}!`);
+        setUploadStatus(`Successfully processed ${result.filename}! Document saved to your history.`);
         console.log('Summary received:', result.summary);
         console.log('Summary type:', typeof result.summary);
+        console.log('Document ID:', result.document_id);
         setSummary(result.summary);
       } else {
         throw new Error(result.error || 'Failed to process file');
@@ -131,6 +133,11 @@ function DocumentUpload() {
           {uploadStatus && (
             <div className={`upload-status ${uploading ? 'uploading' : uploadStatus.includes('success') ? 'success' : uploadStatus.includes('failed') ? 'error' : ''}`}>
               {uploadStatus}
+              {uploadStatus.includes('success') && (
+                <div className="success-actions">
+                  <Link to="/history" className="view-history-link">View Document History</Link>
+                </div>
+              )}
             </div>
           )}          {summary && (
             <div className="summary-container">

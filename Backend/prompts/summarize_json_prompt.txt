@@ -48,10 +48,6 @@ Read the provided medical document carefully and create a structured JSON summar
   "recommendations": [
     "List of recommendations",
     "Each recommendation as its own string"
-  ],
-  "issues": [
-    "List of any ambiguities or conflicting data in the medical record",
-    "Each issue as its own string"
   ]
 }
 ```

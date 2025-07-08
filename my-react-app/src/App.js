@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import DocumentUpload from './pages/DocumentUpload';
+import DocumentHistory from './components/DocumentHistory';
 import CreateIme from './pages/CreateIme';
 import HomePage from './pages/HomePage';
 import AuthPage from './components/Auth';
@@ -49,6 +50,12 @@ const AppContent = () => {
         <Route path="/upload" element={
           <ProtectedRoute>
             <DocumentUpload />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/history" element={
+          <ProtectedRoute>
+            <DocumentHistory />
           </ProtectedRoute>
         } />
         
