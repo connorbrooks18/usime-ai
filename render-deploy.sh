@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e  # Exit on any error
 
 # Render.com deployment script for USIME AI
 # This script is run by Render during deployment
@@ -14,23 +15,31 @@ echo "Installing Node.js dependencies..."
 cd my-react-app
 npm install
 
+# Fix permissions for react-scripts
+echo "Fixing Node.js permissions..."
+chmod +x node_modules/.bin/react-scripts
+
 echo "Building React app..."
 npm run build
 
 # Move back to root directory
 cd ..
 
-# Initialize database
-echo "Initializing database..."
-cd Backend
-python -c "
+# Initialize database (only if DATABASE_URL is set)
+if [ -n "$DATABASE_URL" ]; then
+    echo "Initializing database..."
+    cd Backend
+    python -c "
 from server import app, db
 with app.app_context():
     db.create_all()
     print('Database tables created')
 "
+    cd ..
+else
+    echo "DATABASE_URL not set, skipping database initialization"
+fi
 
 echo "Deployment preparation complete!"
 echo "React build is available in my-react-app/build/"
 echo "Flask server will serve this build directory."
-echo "Database has been initialized."
