@@ -23,7 +23,12 @@ cd ..
 # Initialize database
 echo "Initializing database..."
 cd Backend
-python init_db.py
+python -c "
+from server import app, db
+with app.app_context():
+    db.create_all()
+    print('Database tables created')
+"
 
 echo "Deployment preparation complete!"
 echo "React build is available in my-react-app/build/"
