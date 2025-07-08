@@ -18,8 +18,10 @@ function Navbar() {
       </div>
       <div className="main-nav">
         <ul>
-          <li><Link to="/upload" className={location.pathname === '/upload' || location.pathname === '/' ? 'active' : ''}>Upload</Link></li>
+          <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link></li>
+          <li><Link to="/upload" className={location.pathname === '/upload' ? 'active' : ''}>Upload</Link></li>
           <li><Link to="/history" className={location.pathname === '/history' ? 'active' : ''}>History</Link></li>
+          <li><Link to="/create-ime" className={location.pathname === '/create-ime' ? 'active' : ''}>Create IME</Link></li>
         </ul>
       </div>
       <div className="auth-section">

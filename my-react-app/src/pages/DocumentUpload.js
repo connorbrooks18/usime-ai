@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './DocumentUpload.css';
 
 function DocumentUpload() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState('');
+  const [summary, setSummary] = useState('');
   
   // Handle file selection
   const handleFileChange = (e) => {
@@ -15,15 +17,19 @@ function DocumentUpload() {
       );
       
       setSelectedFiles(prev => [...prev, ...fileArray]);
+      // Clear any previous summary when new files are selected
+      setSummary('');
     }
   };
   
   // Remove a file from the selected files list
   const removeFile = (indexToRemove) => {
     setSelectedFiles(prev => prev.filter((_, index) => index !== indexToRemove));
+    // Clear any previous summary when files are removed
+    setSummary('');
   };
   
-  // Simulate file upload to AI model
+  // Upload file to backend for summarization
   const handleUpload = async () => {
     if (selectedFiles.length === 0) {
       setUploadStatus('Please select at least one PDF file to upload.');
@@ -31,29 +37,37 @@ function DocumentUpload() {
     }
     
     setUploading(true);
-    setUploadStatus('Uploading files and processing with AI model...');
+    setUploadStatus('Uploading file and generating summary...');
+    setSummary('');
     
     try {
-      // Simulating API call to upload files to the AI model
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      // Create form data to send the file
+      const formData = new FormData();
+      // For simplicity, we'll just process the first selected file
+      formData.append('file', selectedFiles[0]);
       
-      // Here you would typically have your actual API call to your AI model
-      // For example:
-      // const formData = new FormData();
-      // selectedFiles.forEach(file => {
-      //   formData.append('files', file);
-      // });
-      // const response = await fetch('your-api-endpoint', {
-      //   method: 'POST',
-      //   body: formData
-      // });
-      // const result = await response.json();
+      // Send the file to our Flask backend
+      const response = await fetch('http://localhost:5000/upload', {
+        method: 'POST',
+        credentials: 'include',
+        body: formData
+      });
       
-      setUploadStatus('Files successfully processed by the AI model!');
-      setSelectedFiles([]);
+      const result = await response.json();
+      
+      if (response.ok) {
+        setUploadStatus(`Successfully processed ${result.filename}! Document saved to your history.`);
+        console.log('Summary received:', result.summary);
+        console.log('Summary type:', typeof result.summary);
+        console.log('Document ID:', result.document_id);
+        setSummary(result.summary);
+      } else {
+        throw new Error(result.error || 'Failed to process file');
+      }
+      
     } catch (error) {
       console.error('Upload error:', error);
-      setUploadStatus('Upload failed. Please try again.');
+      setUploadStatus(`Upload failed: ${error.message}`);
     } finally {
       setUploading(false);
     }
@@ -119,6 +133,214 @@ function DocumentUpload() {
           {uploadStatus && (
             <div className={`upload-status ${uploading ? 'uploading' : uploadStatus.includes('success') ? 'success' : uploadStatus.includes('failed') ? 'error' : ''}`}>
               {uploadStatus}
+              {uploadStatus.includes('success') && (
+                <div className="success-actions">
+                  <Link to="/history" className="view-history-link">View Document History</Link>
+                </div>
+              )}
+            </div>
+          )}          {summary && (
+            <div className="summary-container">
+              <h3>Medical Document Summary</h3>
+              
+              {/* Patient Information Section */}
+              {summary.patientInfo && (
+                <div className="summary-section">
+                  <h4>Patient Information</h4>
+                  <div className="info-grid">
+                    {summary.patientInfo.name && (
+                      <div className="info-item">
+                        <span className="info-label">Name:</span>
+                        <span className="info-value">{summary.patientInfo.name}</span>
+                      </div>
+                    )}
+                    {summary.patientInfo.dob && (
+                      <div className="info-item">
+                        <span className="info-label">DOB:</span>
+                        <span className="info-value">{summary.patientInfo.dob}</span>
+                      </div>
+                    )}
+                    {summary.patientInfo.address && (
+                      <div className="info-item">
+                        <span className="info-label">Address:</span>
+                        <span className="info-value">{summary.patientInfo.address}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+              
+              {/* Injury Details Section */}
+              {summary.injury && (
+                <div className="summary-section">
+                  <h4>Injury Details</h4>
+                  <div className="info-grid">
+                    {summary.injury.mechanism && (
+                      <div className="info-item">
+                        <span className="info-label">Mechanism:</span>
+                        <span className="info-value">{summary.injury.mechanism}</span>
+                      </div>
+                    )}
+                    {summary.injury.date && (
+                      <div className="info-item">
+                        <span className="info-label">Date:</span>
+                        <span className="info-value">{summary.injury.date}</span>
+                      </div>
+                    )}
+                    {summary.injury.details && (
+                      <div className="info-item full-width">
+                        <span className="info-label">Details:</span>
+                        <span className="info-value">{summary.injury.details}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+              
+              {/* Medical History Section */}
+              {summary.medicalHistory && summary.medicalHistory.length > 0 && (
+                <div className="summary-section">
+                  <h4>Medical History</h4>
+                  <ul className="info-list">
+                    {summary.medicalHistory.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              {/* Care History Section */}
+              {summary.careHistory && summary.careHistory.length > 0 && (
+                <div className="summary-section">
+                  <h4>Care History</h4>
+                  <div className="timeline">
+                    {summary.careHistory.map((visit, index) => (
+                      <div key={index} className="timeline-item">
+                        <div className="timeline-date">{visit.date}</div>
+                        <div className="timeline-content">
+                          <div className="timeline-title">{visit.provider}</div>
+                          <div className="timeline-detail"><strong>Findings:</strong> {visit.findings}</div>
+                          {visit.recommendations && (
+                            <div className="timeline-detail"><strong>Recommendations:</strong> {visit.recommendations}</div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {/* Imaging Section */}
+              {summary.imaging && summary.imaging.length > 0 && (
+                <div className="summary-section">
+                  <h4>Imaging Studies</h4>
+                  <table className="imaging-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Facility</th>
+                        <th>Findings</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {summary.imaging.map((image, index) => (
+                        <tr key={index}>
+                          <td>{image.date}</td>
+                          <td>{image.type}</td>
+                          <td>{image.facility}</td>
+                          <td>{image.findings}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+              
+              {/* Functional Limitations Section */}
+              {summary.functionalLimitations && summary.functionalLimitations.length > 0 && (
+                <div className="summary-section">
+                  <h4>Functional Limitations</h4>
+                  <ul className="info-list">
+                    {summary.functionalLimitations.map((limitation, index) => (
+                      <li key={index}>{limitation}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              {/* Treatments Section */}
+              {summary.treatments && summary.treatments.length > 0 && (
+                <div className="summary-section">
+                  <h4>Treatments</h4>
+                  <div className="treatments-list">
+                    {summary.treatments.map((treatment, index) => (
+                      <div key={index} className="treatment-item">
+                        <h5>{treatment.type}</h5>
+                        <p>{treatment.details}</p>
+                        {treatment.providers && treatment.providers.length > 0 && (
+                          <div>
+                            <strong>Providers:</strong> {treatment.providers.join(", ")}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {/* Prognosis Section */}
+              {summary.prognosis && (
+                <div className="summary-section">
+                  <h4>Prognosis</h4>
+                  <p className="prognosis">{summary.prognosis}</p>
+                </div>
+              )}
+              
+              {/* Recommendations Section */}
+              {summary.recommendations && summary.recommendations.length > 0 && (
+                <div className="summary-section">
+                  <h4>Recommendations</h4>
+                  <ul className="info-list">
+                    {summary.recommendations.map((recommendation, index) => (
+                      <li key={index}>{recommendation}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              {/* Issues and Ambiguities Section */}
+              {summary.issues && summary.issues.length > 0 && (
+                <div className="summary-section issues-section">
+                  <h4>Issues and Ambiguities</h4>
+                  <ul className="info-list issues-list">
+                    {summary.issues.map((issue, index) => (
+                      <li key={index}>{issue}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+                {/* Fallback summary case */}
+              {summary.note && summary.note.includes("fallback") && summary.summary && (
+                <div className="summary-section fallback-summary">
+                  <h4>Document Summary (Simple Format)</h4>
+                  <p className="fallback-note">{summary.note}</p>
+                  <div className="fallback-content">
+                    {summary.summary.split('\n').map((line, index) => (
+                      <p key={index}>{line}</p>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {/* Error handling */}
+              {summary.error && (
+                <div className="summary-error">
+                  <h4>Error Processing Document</h4>
+                  <p>{summary.error}</p>
+                  <p>{summary.details}</p>
+                </div>
+              )}
             </div>
           )}
         </div>
