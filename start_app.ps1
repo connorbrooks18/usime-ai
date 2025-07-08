@@ -1,4 +1,23 @@
-# USIME AI - Startup Script with Authentication
+# USIME AI - Production Startup Script
+# Builds React app and starts Flask server serving the built app
+
+# Get the folder where this script is located
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+
+Write-Host "Starting USIME AI Application (Production Mode)..." -ForegroundColor Green
+
+# Build React app first
+Write-Host "Building React frontend..." -ForegroundColor Yellow
+Set-Location "$scriptDir\my-react-app"
+npm install
+npm run build
+
+# Start Flask server (serves React build)
+Write-Host "Starting Flask server (serving React build)..." -ForegroundColor Yellow
+Set-Location "$scriptDir\Backend"
+python server.py
+
+Write-Host "Application is now running at http://localhost:5000" -ForegroundColor Green Script with Authentication
 # Starts both frontend and backend in separate windows
 
 # Get the folder where this script is located

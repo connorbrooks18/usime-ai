@@ -1,5 +1,4 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask import Flask, request, jsonify, send_from_directory
 from flask_login import LoginManager, login_required, current_user
 import os
 from werkzeug.utils import secure_filename
@@ -9,9 +8,7 @@ from summarize import Summarizer
 from models import db, User, Document
 from auth_routes import register_auth_routes
 
-app = Flask(__name__)
-# Enable CORS for React frontend
-CORS(app, supports_credentials=True, origins=["http://localhost:3000"])
+app = Flask(__name__, static_folder='../my-react-app/build', static_url_path='/')
 
 # Configuration
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-change-this-in-production')
@@ -38,7 +35,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit to 16MB uploads
 
-@app.route('/upload', methods=['POST'])
+@app.route('/api/upload', methods=['POST'])
 @login_required
 def upload_file():
     # Check if any file was sent
@@ -147,8 +144,23 @@ def get_user_stats():
         'document_count': document_count
     })
 
+# Serve React App
+@app.route('/')
+def serve_react():
+    return send_from_directory(app.static_folder, 'index.html')
+
+# Handle React Router - serve index.html for any non-API routes
+@app.errorhandler(404)
+def not_found(error):
+    # Check if it's an API request
+    if request.path.startswith('/api/'):
+        return jsonify({'error': 'API endpoint not found'}), 404
+    # For all other requests, serve the React app
+    return send_from_directory(app.static_folder, 'index.html')
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    # Run the server on port 5000
-    app.run(debug=True, port=5000)
+    # Run the server - in production, this will be handled by gunicorn
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)

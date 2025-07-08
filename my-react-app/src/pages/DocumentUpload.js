@@ -47,7 +47,7 @@ function DocumentUpload() {
       formData.append('file', selectedFiles[0]);
       
       // Send the file to our Flask backend
-      const response = await fetch('http://localhost:5000/upload', {
+      const response = await fetch('/api/upload', {
         method: 'POST',
         credentials: 'include',
         body: formData
