@@ -6,11 +6,6 @@ set -e  # Exit on any error
 
 echo "Starting Render deployment..."
 
-# Install system dependencies
-echo "Installing system dependencies..."
-apt-get update
-apt-get install -y tesseract-ocr poppler-utils
-
 # Install Python dependencies
 echo "Installing Python dependencies..."
 pip install -r requirements.txt

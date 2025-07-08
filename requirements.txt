@@ -8,3 +8,5 @@ flask-sqlalchemy
 werkzeug
 gunicorn
 psycopg2-binary
+easyocr
+pypdfium2
