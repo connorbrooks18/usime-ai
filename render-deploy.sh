@@ -22,11 +22,20 @@ chmod +x node_modules/.bin/react-scripts
 echo "Building React app..."
 npm run build
 
-# Check if build was successful
+# Check if build was successful and show detailed contents
 if [ -d "build" ]; then
     echo "React build successful. Contents:"
     ls -la build/
+    echo "Static files:"
     ls -la build/static/
+    if [ -d "build/static/js" ]; then
+        echo "JavaScript files:"
+        ls -la build/static/js/
+    fi
+    if [ -d "build/static/css" ]; then
+        echo "CSS files:"
+        ls -la build/static/css/
+    fi
 else
     echo "ERROR: React build directory not found!"
     exit 1

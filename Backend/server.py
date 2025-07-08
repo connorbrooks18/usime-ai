@@ -29,6 +29,19 @@ def load_user(user_id):
 # Register authentication routes
 register_auth_routes(app)
 
+# Global error handler to ensure all errors return JSON
+@app.errorhandler(Exception)
+def handle_error(e):
+    """Global error handler to ensure all errors return JSON"""
+    import traceback
+    traceback.print_exc()
+    
+    # Return JSON error response
+    return jsonify({
+        'success': False,
+        'error': str(e)
+    }), 500
+
 # Configure upload folder
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -88,8 +101,20 @@ def upload_file():
             })
             
         except Exception as e:
+            # Log the full error for debugging
             print(f"Error processing file: {str(e)}")
-            return jsonify({'error': f'Error processing file: {str(e)}'}), 500
+            import traceback
+            traceback.print_exc()
+            
+            # Clean up the uploaded file if processing failed
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            
+            # Return proper JSON error response
+            return jsonify({
+                'success': False,
+                'error': f'Error processing file: {str(e)}'
+            }), 500
     else:
         return jsonify({'error': 'Only PDF files are allowed'}), 400
 
