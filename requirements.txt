@@ -2,8 +2,7 @@ pdf2image
 pytesseract
 openai
 flask
+flask-cors
 flask-login
 flask-sqlalchemy
 werkzeug
-gunicorn
-psycopg2-binary
