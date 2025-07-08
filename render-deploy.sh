@@ -32,8 +32,10 @@ if [ -n "$DATABASE_URL" ]; then
     python -c "
 from server import app, db
 with app.app_context():
+    # Drop existing tables and recreate (for now, since this is early development)
+    db.drop_all()
     db.create_all()
-    print('Database tables created')
+    print('Database tables recreated with updated schema')
 "
     cd ..
 else
