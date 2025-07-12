@@ -1,0 +1,1 @@
+cd Backend && python server.py 

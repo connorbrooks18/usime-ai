@@ -20,6 +20,8 @@ function Navbar() {
         <ul>
           <li><Link to="/upload" className={location.pathname === '/upload' || location.pathname === '/' ? 'active' : ''}>Upload</Link></li>
           <li><Link to="/history" className={location.pathname === '/history' ? 'active' : ''}>History</Link></li>
+          <li><Link to="/ime" className={location.pathname === '/ime' ? 'active' : ''}>Generate IME</Link></li>
+          <li><Link to="/ime-history" className={location.pathname === '/ime-history' ? 'active' : ''}>IME History</Link></li>
         </ul>
       </div>
       <div className="auth-section">

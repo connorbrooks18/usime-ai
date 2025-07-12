@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     documents = db.relationship('Document', backref='user', lazy=True, cascade='all, delete-orphan')
+    ime_reports = db.relationship('ImeReport', backref='user', lazy=True, cascade='all, delete-orphan')
     
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -43,3 +44,34 @@ class Document(db.Model):
     
     def __repr__(self):
         return f'<Document {self.original_filename}>'
+
+class ImeReport(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    document_id = db.Column(db.Integer, db.ForeignKey('document.id'), nullable=False)
+    interview_notes = db.Column(db.Text, nullable=False)
+    questions = db.Column(db.Text, nullable=False)
+    confusions = db.Column(db.Text, nullable=True)
+    report = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
+    # Relationship to the source document
+    document = db.relationship('Document', backref='ime_reports')
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'document_id': self.document_id,
+            'document_name': self.document.original_filename if self.document else None,
+            'interview_notes': self.interview_notes,
+            'questions': self.questions,
+            'confusions': self.confusions,
+            'report': self.report,
+            'created_at': self.created_at.isoformat(),
+            'user_id': self.user_id
+        }
+    
+    def __repr__(self):
+        return f'<ImeReport {self.title}>'

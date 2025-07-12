@@ -1,341 +1,434 @@
 /* CreateIme.css - Styles for the IME creation page */
 
 .create-ime-page {
-  max-width: 1000px;
-  margin: 40px auto 60px;
-  padding: 0 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
 }
 
-.create-ime-page h1 {
-  margin-bottom: 30px;
+.ime-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.ime-container h1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin: 0;
+  padding: 30px;
   text-align: center;
-  color: #1a3b5d;
-  font-size: 28px;
+  font-size: 2.5rem;
+  font-weight: 300;
 }
 
-.ime-form-container {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 35px;
+.ime-description {
+  background: #f8f9fa;
+  margin: 0;
+  padding: 20px 30px;
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.ime-form {
+  padding: 30px;
 }
 
 .form-section {
-  margin-bottom: 35px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 40px;
 }
 
-.form-section:last-child {
-  margin-bottom: 25px;
-  border-bottom: none;
-}
-
-.form-section h2 {
-  font-size: 20px;
-  color: #1a3b5d;
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-.form-row {
-  display: flex;
-  margin: 0 -10px;
-  flex-wrap: wrap;
-}
-
-.form-row .form-group {
-  padding: 0 10px;
-  flex: 1;
-  min-width: 250px;
-}
-
-.ime-form .form-group {
-  margin-bottom: 20px;
-}
-
-.ime-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
+.form-section h3 {
   color: #333;
-  font-size: 15px;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #667eea;
 }
 
-.ime-form input,
-.ime-form textarea,
-.ime-form select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  color: #333;
-  background-color: #f9fafb;
-  transition: border 0.3s, box-shadow 0.3s;
+.section-description {
+  color: #666;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
 }
 
-.ime-form textarea {
-  resize: vertical;
-  min-height: 120px;
+/* Document Selector */
+.document-selector {
+  margin-top: 15px;
 }
 
-.ime-form .submit-button {
-  background-color: #1a73e8;
+.no-documents {
+  text-align: center;
+  padding: 40px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #dee2e6;
+}
+
+.no-documents p {
+  margin: 0 0 20px 0;
+  color: #666;
+}
+
+.upload-link {
+  display: inline-block;
+  background: #667eea;
   color: white;
-  border: none;
-  padding: 16px 28px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
   font-weight: 500;
   transition: background-color 0.3s;
-  max-width: 300px;
-  margin: 0 auto;
-  display: block;
 }
 
-.ime-form .submit-button:hover:not(:disabled) {
-  background-color: #0d5bcd;
+.upload-link:hover {
+  background: #5a6fd8;
 }
 
-.ime-form .submit-button:disabled {
-  background-color: #a7bfe8;
-  cursor: not-allowed;
+.document-list {
+  display: grid;
+  gap: 15px;
 }
 
-.ime-form input:focus,
-.ime-form textarea:focus,
-.ime-form select:focus {
-  outline: none;
-  border-color: #4285F4;
-  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
-}
-
-.submission-message {
-  padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 25px;
-  font-size: 16px;
-  text-align: center;
-}
-
-.submission-message.success {
-  background-color: #e6f4ea;
-  color: #137333;
-  border: 1px solid #137333;
-}
-
-.submission-message.error {
-  background-color: #fce8e6;
-  color: #c5221f;
-  border: 1px solid #c5221f;
-}
-
-/* File upload styling */
-.file-upload-container {
-  margin-bottom: 25px;
-}
-
-.file-upload-wrapper {
-  position: relative;
-  margin-bottom: 10px;
-  width: 100%;
-  height: 45px;
-}
-
-.file-input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  z-index: 2;
+.document-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
 }
 
-.file-upload-button {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #f5f7fa;
-  border: 2px dashed #cbd5e0;
-  border-radius: 4px;
+.document-option:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.document-option.selected {
+  border-color: #667eea;
+  background: #f8f9ff;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.document-info h4 {
+  margin: 0 0 5px 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.document-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.selection-indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #667eea;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #4a5568;
-  transition: all 0.3s;
-}
-
-.file-upload-button:hover {
-  background-color: #edf2f7;
-  border-color: #4285F4;
-}
-
-.upload-help-text {
+  font-weight: bold;
   font-size: 14px;
-  color: #718096;
-  margin-top: 8px;
 }
 
-.uploaded-files {
-  background-color: #f9fafb;
-  border-radius: 4px;
+.document-option:not(.selected) .selection-indicator {
+  background: #e9ecef;
+  color: transparent;
+}
+
+/* Title Input */
+.title-input {
+  width: 100%;
   padding: 15px;
-  margin-bottom: 25px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: inherit;
+  transition: border-color 0.3s;
 }
 
-.uploaded-files h4 {
-  margin-top: 0;
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 10px;
+.title-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.uploaded-files ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+/* Text Areas */
+.notes-textarea,
+.questions-textarea {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s;
 }
 
-.uploaded-files li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #edf2f7;
+.notes-textarea:focus,
+.questions-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.uploaded-files li:last-child {
-  border-bottom: none;
-}
-
-.file-name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 80%;
-}
-
-.remove-file-btn {
-  background-color: transparent;
-  color: #e53e3e;
+/* Generate Button */
+.generate-ime-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 14px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
 }
 
-.remove-file-btn:hover {
-  background-color: #fed7d7;
+.generate-ime-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
-.form-actions {
-  margin-top: 30px;
+.generate-ime-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Error Message */
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 20px;
+}
+
+/* Success Message */
+.success-message {
+  background: #d4edda;
+  color: #155724;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #c3e6cb;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-/* Privacy section styling */
-.privacy-section .privacy-notice {
-  background-color: #e8f0fe;
-  border-left: 4px solid #1a73e8;
-  padding: 15px 20px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-}
-
-.privacy-section .privacy-notice p {
-  margin-top: 0;
+.success-message p {
+  margin: 0 0 10px 0;
   font-weight: 500;
-  color: #1a3b5d;
 }
 
-.privacy-section .privacy-notice ul {
+.view-history-link {
+  display: inline-block;
+  background: #28a745;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.view-history-link:hover {
+  background: #218838;
+}
+
+/* IME Result */
+.ime-result {
+  margin-top: 40px;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.ime-result h3 {
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+.ime-section {
+  margin-bottom: 30px;
+}
+
+.ime-section h4 {
+  color: #667eea;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.confusions-content,
+.report-content {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+  line-height: 1.6;
+}
+
+.confusions-content p,
+.report-content p {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.confusions-content p:last-child,
+.report-content p:last-child {
   margin-bottom: 0;
+}
+
+/* IME Actions */
+.ime-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.print-btn,
+.download-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.print-btn {
+  background: #28a745;
+  color: white;
+}
+
+.print-btn:hover {
+  background: #218838;
+  transform: translateY(-1px);
+}
+
+.download-btn {
+  background: #17a2b8;
+  color: white;
+}
+
+.download-btn:hover {
+  background: #138496;
+  transform: translateY(-1px);
+}
+
+/* Information Section */
+.ime-info {
+  background: #f8f9fa;
+  padding: 30px;
+  border-top: 1px solid #e9ecef;
+}
+
+.ime-info h3 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.info-content p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.info-content ul {
+  margin: 15px 0;
   padding-left: 20px;
 }
 
-.privacy-section .privacy-notice li {
-  margin-bottom: 5px;
-  color: #4a5568;
+.info-content li {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 8px;
 }
 
-/* Checkbox styling */
-.checkbox-group label {
-  display: flex;
-  align-items: flex-start;
-  font-weight: normal;
-  cursor: pointer;
-  padding-left: 35px;
-  position: relative;
-  line-height: 1.5;
+.info-content strong {
+  color: #333;
 }
 
-.checkbox-group input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-.checkmark {
-  position: absolute;
-  top: 2px;
-  left: 0;
-  height: 22px;
-  width: 22px;
-  background-color: #f9fafb;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-}
-
-.checkbox-group input[type="checkbox"]:checked ~ .checkmark {
-  background-color: #1a73e8;
-  border-color: #1a73e8;
-}
-
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.checkbox-group input[type="checkbox"]:checked ~ .checkmark:after {
-  display: block;
-}
-
-.checkbox-group .checkmark:after {
-  left: 8px;
-  top: 4px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
-  .form-row {
+  .create-ime-page {
+    padding: 10px;
+  }
+  
+  .ime-container h1 {
+    font-size: 2rem;
+    padding: 20px;
+  }
+  
+  .ime-form {
+    padding: 20px;
+  }
+  
+  .ime-actions {
     flex-direction: column;
   }
   
-  .form-row .form-group {
-    margin-bottom: 20px;
+  .print-btn,
+  .download-btn {
+    width: 100%;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .create-ime-page {
+    background: white;
+    padding: 0;
   }
   
-  .ime-form-container {
-    padding: 25px 20px;
+  .ime-container {
+    box-shadow: none;
+    border-radius: 0;
   }
   
-  .create-ime-page h1 {
-    font-size: 24px;
+  .ime-container h1,
+  .ime-description,
+  .ime-form,
+  .ime-info,
+  .ime-actions {
+    display: none;
+  }
+  
+  .ime-result {
+    margin: 0;
+    padding: 0;
+    background: white;
+    border: none;
+  }
+  
+  .confusions-content,
+  .report-content {
+    background: white;
+    border: none;
+    padding: 0;
   }
 }

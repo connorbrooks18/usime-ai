@@ -4,6 +4,8 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import DocumentUpload from './pages/DocumentUpload';
 import DocumentHistory from './components/DocumentHistory';
+import CreateIme from './pages/CreateIme';
+import ImeHistory from './pages/ImeHistory';
 import AuthPage from './components/Auth';
 
 // Protected Route component
@@ -54,6 +56,18 @@ const AppContent = () => {
         <Route path="/history" element={
           <ProtectedRoute>
             <DocumentHistory />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/ime" element={
+          <ProtectedRoute>
+            <CreateIme />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/ime-history" element={
+          <ProtectedRoute>
+            <ImeHistory />
           </ProtectedRoute>
         } />
         
