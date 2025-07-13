@@ -2,7 +2,7 @@
 """
 Database initialization script for USIME AI
 """
-from server import app
+from app import app
 from models import db, User, Document
 
 def init_db():
