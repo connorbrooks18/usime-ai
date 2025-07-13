@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/1f823323-092c-48af-920a-aa9d8d7f5e9b/resourceGroups/usime-ai/providers/Microsoft.Web/sites/usime-ai-new",
-    "appService.deploySubpath": "Backend"
-}
