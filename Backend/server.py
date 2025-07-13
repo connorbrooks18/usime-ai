@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_login import LoginManager, login_required, current_user
+from flask_cors import CORS
 import os
 from werkzeug.utils import secure_filename
 import sys
@@ -10,7 +11,10 @@ from models import db, User, Document, ImeReport
 from auth_routes import register_auth_routes
 from write_ime import Writer
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../my-react-app/build', static_url_path='/')
+
+# Enable CORS for all routes
+CORS(app, supports_credentials=True, origins=['*'])
 
 # Configuration
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-change-this-in-production')
@@ -21,7 +25,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = 'api_login'
+login_manager.login_view = 'login'
 login_manager.login_message = 'Please log in to access this page.'
 
 @login_manager.user_loader
@@ -336,19 +340,8 @@ def delete_ime_report(ime_id):
 
 # Serve React App
 @app.route('/')
-def api_status():
-    return jsonify({
-        'success': True,
-        'message': 'USIME AI API is running',
-        'version': '1.0.0',
-        'endpoints': [
-            '/api/login',
-            '/api/register', 
-            '/api/upload',
-            '/api/documents',
-            '/api/generate-ime'
-        ]
-    })
+def serve_react():
+    return send_from_directory(app.static_folder, 'index.html')
 
 # Handle React Router - serve index.html for any non-API routes
 @app.errorhandler(404)
