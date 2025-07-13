@@ -27,6 +27,7 @@ def extract_text_from_pdf(pdf_path, openai_client, model="gpt-4o-vision-preview"
 	return response.choices[0].message.content.strip()
 
 
+# something
 
 def extract_all_text(pdf_path, endpoint=None, api_key=None, api_version="2025-04-01-preview", model="gpt-4o-vision-preview"):
 	"""
