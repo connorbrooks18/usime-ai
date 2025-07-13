@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_BASE_URL from '../config';
 import './DocumentHistory.css';
 
 const DocumentHistory = () => {
@@ -13,7 +14,7 @@ const DocumentHistory = () => {
 
   const fetchDocuments = async () => {
     try {
-      const response = await fetch('/api/documents', {
+      const response = await fetch(`${API_BASE_URL}/api/documents`, {
         credentials: 'include'
       });
       
@@ -33,7 +34,7 @@ const DocumentHistory = () => {
 
   const handleDocumentClick = async (documentId) => {
     try {
-      const response = await fetch(`/api/documents/${documentId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/documents/${documentId}`, {
         credentials: 'include'
       });
       
@@ -54,7 +55,7 @@ const DocumentHistory = () => {
     
     if (window.confirm('Are you sure you want to delete this document?')) {
       try {
-        const response = await fetch(`/api/documents/${documentId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/documents/${documentId}`, {
           method: 'DELETE',
           credentials: 'include'
         });

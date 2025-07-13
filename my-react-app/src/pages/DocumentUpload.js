@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import API_BASE_URL from '../config';
 import './DocumentUpload.css';
 
 function DocumentUpload() {
@@ -47,7 +48,7 @@ function DocumentUpload() {
       formData.append('file', selectedFiles[0]);
       
       // Send the file to our Flask backend
-      const response = await fetch('/api/upload', {
+      const response = await fetch(`${API_BASE_URL}/api/upload`, {
         method: 'POST',
         credentials: 'include',
         body: formData

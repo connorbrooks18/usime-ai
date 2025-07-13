@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import API_BASE_URL from '../config';
 import './CreateIme.css';
 
 function CreateIme() {
@@ -18,7 +19,7 @@ function CreateIme() {
 
   const fetchDocuments = async () => {
     try {
-      const response = await fetch('/api/documents', {
+      const response = await fetch(`${API_BASE_URL}/api/documents`, {
         credentials: 'include'
       });
       
@@ -60,7 +61,7 @@ function CreateIme() {
     setImeResult(null);
 
     try {
-      const response = await fetch('/api/generate-ime', {
+      const response = await fetch(`${API_BASE_URL}/api/generate-ime`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -8,6 +8,5 @@ flask-sqlalchemy
 werkzeug
 gunicorn
 psycopg2-binary
-easyocr
 pypdfium2
-numpy
+Pillow

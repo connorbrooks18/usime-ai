@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import API_BASE_URL from '../config';
 import './ImeHistory.css';
 
 const ImeHistory = () => {
@@ -14,7 +15,7 @@ const ImeHistory = () => {
 
   const fetchImeReports = async () => {
     try {
-      const response = await fetch('/api/ime-reports', {
+      const response = await fetch(`${API_BASE_URL}/api/ime-reports`, {
         credentials: 'include'
       });
       
