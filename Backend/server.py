@@ -11,7 +11,7 @@ from models import db, User, Document, ImeReport
 from auth_routes import register_auth_routes
 from write_ime import Writer
 
-app = Flask(__name__, static_folder='../my-react-app/build', static_url_path='/')
+app = Flask(__name__)
 
 # Enable CORS for all routes
 CORS(app, supports_credentials=True, origins=['*'])
@@ -338,19 +338,19 @@ def delete_ime_report(ime_id):
         print(f"Error deleting IME report: {str(e)}")
         return jsonify({'error': 'Failed to delete IME report'}), 500
 
-# Serve React App
+# Health check endpoint
 @app.route('/')
-def serve_react():
-    return send_from_directory(app.static_folder, 'index.html')
+def health_check():
+    return jsonify({'status': 'healthy', 'message': 'Backend API is running'})
 
-# Handle React Router - serve index.html for any non-API routes
+# Handle 404 errors for API routes
 @app.errorhandler(404)
 def not_found(error):
     # Check if it's an API request
     if request.path.startswith('/api/'):
         return jsonify({'error': 'API endpoint not found'}), 404
-    # For all other requests, serve the React app
-    return send_from_directory(app.static_folder, 'index.html')
+    # For all other requests, return a simple message
+    return jsonify({'error': 'Endpoint not found'}), 404
 
 if __name__ == '__main__':
     with app.app_context():
