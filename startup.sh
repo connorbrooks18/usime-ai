@@ -7,4 +7,4 @@ apt-get update && apt-get install -y poppler-utils
 
 # Start the Flask app with gunicorn
 #gunicorn --bind 0.0.0.0:8000 app:app 
-gunicorn --timeout 120 -b 0.0.0.0:8000 app:app
+gunicorn --timeout 360 -b 0.0.0.0:8000 app:app
