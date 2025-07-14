@@ -38,13 +38,15 @@ class Writer:
 		return prompt
 
 	def write_ime(self):
-		response = self.client.responses.create(
-			model="o4-mini",
-			instructions=self.developer_prompt,
-			input=self.user_prompt
+		response = self.client.chat.completions.create(
+			model="gpt-4.1-mini",
+			messages=[
+				{"role": "system", "content": self.developer_prompt},
+				{"role": "user", "content": self.user_prompt}
+			],
+			max_tokens=4096
 		)
-	
-		return response.output_text 
+		return response.choices[0].message.content.strip()
 
 
 if __name__ == "__main__":
