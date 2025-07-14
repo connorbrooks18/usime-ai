@@ -5,7 +5,7 @@ from openai import AzureOpenAI
 
 class Writer:
 
-	def __init__(self, endpoint, api_key):
+	def __init__(self, endpoint, api_key, records_file="./example/example.pdf", notes_file="./example/example.txt", questions_file="./example/questions.txt"):
 		self.client = AzureOpenAI(
 			azure_endpoint = endpoint,
 			api_key = api_key,
@@ -51,13 +51,11 @@ if __name__ == "__main__":
 	endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
 	api_key = os.environ["AZURE_OPENAI_API_KEY"]
 
+	# Accept file paths as command line arguments or use defaults
+	records_file = sys.argv[1] if len(sys.argv) > 1 else "./example/example.pdf"
+	notes_file = sys.argv[2] if len(sys.argv) > 2 else "./example/example.txt"
+	questions_file = sys.argv[3] if len(sys.argv) > 3 else "./example/questions.txt"
 
-#	if len(sys.argv) < 2 or sys.argv[1] == None or sys.argv[1] == "":
-#		print("Insert pdf name or path to pdf after write_ime.py")
-#		exit()
-	
-
-
-	w = Writer(endpoint=endpoint, api_key=api_key)
+	w = Writer(endpoint=endpoint, api_key=api_key, records_file=records_file, notes_file=notes_file, questions_file=questions_file)
 	ime = w.write_ime()
 	print(ime)

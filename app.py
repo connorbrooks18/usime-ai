@@ -223,29 +223,14 @@ def generate_ime():
             questions_path = questions_file.name
         
         try:
-            # Initialize the IME writer
-            writer = Writer(endpoint=endpoint, api_key=api_key)
-            
-            # Override the make_user_prompt method to use our files
-            def custom_make_user_prompt(self, records_file=pdf_path, notes_file=notes_path, questions_file=questions_path):
-                import text_extraction
-                records = text_extraction.extract_all_text(records_file)
-                with open(notes_file) as f:
-                    notes = f.read()
-                with open(questions_file) as f:
-                    questions = f.read() 
-
-                prompt = "{\n"
-                prompt += f'"records": "{records}",\n'
-                prompt += f'"interview_notes": "{notes}",\n'
-                prompt += f'"questions": "{questions}"\n'
-                prompt += "}"
-                return prompt
-            
-            # Replace the method temporarily
-            original_method = writer.make_user_prompt
-            writer.make_user_prompt = lambda: custom_make_user_prompt(writer, pdf_path, notes_path, questions_path)
-            
+            # Initialize the IME writer with correct file paths
+            writer = Writer(
+                endpoint=endpoint,
+                api_key=api_key,
+                records_file=pdf_path,
+                notes_file=notes_path,
+                questions_file=questions_path
+            )
             # Generate the IME
             ime_result = writer.write_ime()
             
