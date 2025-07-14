@@ -82,13 +82,10 @@ def upload_file():
                 return jsonify({'error': 'Azure OpenAI credentials not configured'}), 500
               
             # Initialize summarizer
-            print("\nre summarizer\n")
             summarizer = Summarizer(endpoint=endpoint, api_key=api_key)
-            print("\npost summarizer\n")
             
             # Generate structured JSON summary from PDF (for React frontend)
             summary_json = summarizer.summarize_from_pdf_as_json(file_path)
-            print("\npost summary json\n")
             
             # Save document to database
             document = Document(
