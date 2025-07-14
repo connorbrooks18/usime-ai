@@ -12,7 +12,7 @@ class Writer:
 			api_version="2025-04-01-preview"
 		)
 		self.developer_prompt = self.get_developer_prompt()
-		self.user_prompt = self.make_user_prompt()
+		self.user_prompt = self.make_user_prompt(records_file, notes_file, questions_file)
 
 
 	def get_developer_prompt(self, file_name="./prompts/write_ime_prompt.txt"):
