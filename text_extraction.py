@@ -12,7 +12,7 @@ def encode_pdf_to_base64(pdf_path):
 
 
 
-def extract_text_from_pdf(pdf_path, openai_client, model="gpt-4o-vision-preview"):
+def extract_text_from_pdf(pdf_path, openai_client, model="gpt-4.1-mini"):
 	pdf_b64 = encode_pdf_to_base64(pdf_path)
 	response = openai_client.chat.completions.create(
 		model=model,
@@ -29,7 +29,7 @@ def extract_text_from_pdf(pdf_path, openai_client, model="gpt-4o-vision-preview"
 
 #  something
 
-def extract_all_text(pdf_path, endpoint=None, api_key=None, api_version="2025-04-01-preview", model="gpt-4o-vision-preview"):
+def extract_all_text(pdf_path, endpoint=None, api_key=None, api_version="2025-04-01-preview", model="gpt-4.1-mini"):
 	"""
 	Extracts all text from a PDF using OpenAI Vision API for OCR.
 	Requires AzureOpenAI endpoint and api_key.
