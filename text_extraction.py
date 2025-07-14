@@ -2,32 +2,44 @@
 
 
 
+
 import base64
+import io
 from openai import AzureOpenAI
+from pdf2image import convert_from_path
 
 
-def encode_pdf_to_base64(pdf_path):
-	with open(pdf_path, "rb") as f:
-		return base64.b64encode(f.read()).decode()
+
+def encode_image_to_base64(pil_image):
+	buffered = io.BytesIO()
+	pil_image.save(buffered, format="PNG")
+	return base64.b64encode(buffered.getvalue()).decode()
+
 
 
 
 def extract_text_from_pdf(pdf_path, openai_client, model="gpt-4.1-mini"):
-	pdf_b64 = encode_pdf_to_base64(pdf_path)
-	response = openai_client.chat.completions.create(
-		model=model,
-		messages=[
-			{"role": "system", "content": "You are an OCR assistant. Extract all readable text from the PDF as accurately as possible."},
-			{"role": "user", "content": [
-				{"type": "image_url", "image_url": {"url": f"data:application/pdf;base64,{pdf_b64}"}}
-			]}
-		],
-		max_tokens=4096
-	)
-	return response.choices[0].message.content.strip()
+	pages = convert_from_path(pdf_path)
+	all_text = []
+	for idx, page in enumerate(pages):
+		img_b64 = encode_image_to_base64(page)
+		data_url = f"data:image/png;base64,{img_b64}"
+		response = openai_client.chat.completions.create(
+			model=model,
+			messages=[
+				{"role": "system", "content": f"You are an OCR assistant. Extract all readable text from this medical record page as accurately as possible. This is page {idx+1} of the PDF."},
+				{"role": "user", "content": [
+					{"type": "image_url", "image_url": {"url": data_url}}
+				]}
+			],
+			max_tokens=4096
+		)
+		all_text.append(response.choices[0].message.content.strip())
+	return "\nNEW PAGE\n\n".join(all_text)
 
 
 #  something
+
 
 def extract_all_text(pdf_path, endpoint=None, api_key=None, api_version="2025-04-01-preview", model="gpt-4.1-mini"):
 	"""
