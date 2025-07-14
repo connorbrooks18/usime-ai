@@ -30,7 +30,7 @@ class Summarizer:
 	
 	def summarize_from_text(self, text):
 		response = self.client.chat.completions.create(
-			model="o4-mini",
+			model="gpt-4.1-mini",
 			messages=[
 				{"role": "system", "content": self.prompt},
 				{"role": "user", "content": text}
@@ -47,7 +47,7 @@ class Summarizer:
 		"""Generate a structured JSON summary from text"""
 		try:
 			response = self.client.chat.completions.create(
-				model="o4-mini",
+				model="gpt-4.1-mini",
 				messages=[
 					{"role": "system", "content": self.json_prompt},
 					{"role": "user", "content": text}
